@@ -65,7 +65,7 @@ app.post('/webhook/', function (req, res) {
  * @param text
  */
 function sendTextMessage(sender, text) {
-    console.log('***** DEBUG *****', sender);
+    console.log('***** DEBUG ***** sendTextMessage', sender);
 
     let messageData = {text: text};
 
@@ -91,7 +91,7 @@ function sendTextMessage(sender, text) {
  * @param sender
  */
 function sendGenericMessage(sender) {
-    console.log('***** DEBUG *****', sender);
+    console.log('***** DEBUG ***** sendGenericMessage', sender);
     let messageData = {
         "attachment": {
             "type": "template",
