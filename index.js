@@ -23,14 +23,14 @@ app.get('/', function (req, res) {
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
     if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
-        res.send(req.query['hub.challenge'])
+        res.send(req.query['hub.challenge']);
     }
-    res.send('Error, wrong token')
+    res.send('Error, wrong token');
 });
 
 // Spin up the server
 app.listen(app.get('port'), function () {
-    console.log('running on port', app.get('port'))
+    console.log('running on port', app.get('port'));
 });
 
 app.post('/webhook/', function (req, res) {
@@ -47,6 +47,12 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender);
                 continue;
             }
+
+            if (text === 'j\'ai une faim de loup.') {
+                sendTextMessage(sender, "Ne vous inquiétez pas : Firmin va vous régal' !");
+                continue;
+            }
+
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
         if (event.postback) {
