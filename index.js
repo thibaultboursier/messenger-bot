@@ -49,14 +49,11 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender);
                 continue;
             }
-            console.log('***** DEBUG ***** CALL 1 sendTextMessage', sender);
 
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
         if (event.postback) {
             let text = JSON.stringify(event.postback);
-
-            console.log('***** DEBUG ***** CALL 2 sendTextMessage', sender);
 
             sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token);
             continue;
@@ -71,8 +68,6 @@ app.post('/webhook/', function (req, res) {
  * @param text
  */
 function sendTextMessage(sender, text) {
-    console.log('***** DEBUG ***** sendTextMessage', sender);
-
     let messageData = {text: text};
 
     request({
@@ -97,7 +92,6 @@ function sendTextMessage(sender, text) {
  * @param sender
  */
 function sendGenericMessage(sender) {
-    console.log('***** DEBUG ***** sendGenericMessage', sender);
     let messageData = {
         "attachment": {
             "type": "template",
