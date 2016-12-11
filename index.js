@@ -47,10 +47,14 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender);
                 continue;
             }
+            console.log('***** DEBUG ***** CALL 1 sendTextMessage', sender);
+
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
         if (event.postback) {
             let text = JSON.stringify(event.postback);
+
+            console.log('***** DEBUG ***** CALL 2 sendTextMessage', sender);
 
             sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token);
             continue;
