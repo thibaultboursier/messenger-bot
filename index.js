@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 
-const token = 'EAAC4SAL2frQBAH9g8goaQRZAd1DSLOvMMd3LZAfe9ZCVqYPo1taNrIDZBXRPpHFYvWmOm0d1b5mx8RWZCckwL6vhZAxvEkvzYoshZCmLSuOaQzE1Q P5mPTY52Xg9TcQgFcrhqozlrLe1DjCMOiDd6FssX9KLmvYvBVm1jqWmjgScAZDZD';
+const token = process.env.FB_PAGE_ACCESS_TOKEN;
 
 app.set('port', (process.env.PORT || 5000));
 
