@@ -109,7 +109,13 @@ const findOrCreateSession = (fbid) => {
 
 // Our bot actions
 const actions = {
-    fetchMeal: meal.fetchOne,
+    fetchMeal({sessionId}, {text}){
+        const recipientId = sessions[sessionId].fbid;
+
+        if (recipientId) {
+            return fbMessage(recipientId, `Le plat ${text} est disponible !`);
+        }
+    },
     send({sessionId}, {text}) {
         // Our bot has something to say!
         // Let's retrieve the Facebook user whose session belongs to
