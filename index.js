@@ -39,9 +39,13 @@ const WIT_TOKEN = process.env.WIT_TOKEN;
 
 // Messenger API parameters
 const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
-if (!FB_PAGE_ACCESS_TOKEN) { throw new Error('missing FB_PAGE_ACCESS_TOKEN') }
+if (!FB_PAGE_ACCESS_TOKEN) {
+    throw new Error('missing FB_PAGE_ACCESS_TOKEN')
+}
 const FB_APP_SECRET_TOKEN = process.env.FB_APP_SECRET_TOKEN;
-if (!FB_APP_SECRET_TOKEN) { throw new Error('missing FB_APP_SECRET_TOKEN') }
+if (!FB_APP_SECRET_TOKEN) {
+    throw new Error('missing FB_APP_SECRET_TOKEN')
+}
 
 let FB_VERIFY_TOKEN = null;
 crypto.randomBytes(8, (err, buff) => {
@@ -58,8 +62,8 @@ crypto.randomBytes(8, (err, buff) => {
 
 const fbMessage = (id, text) => {
     const body = JSON.stringify({
-        recipient: { id },
-        message: { text },
+        recipient: {id},
+        message: {text},
     });
     const qs = 'access_token=' + encodeURIComponent(FB_PAGE_ACCESS_TOKEN);
     return fetch('https://graph.facebook.com/me/messages?' + qs, {
@@ -106,6 +110,9 @@ const actions = {
     callPerson(){
         console.log('Calling callPerson method');
     },
+    fetchMeal({sessionId}, {text}){
+        console.log('Looking in database for meal \'%d\'', text);
+    },
     send({sessionId}, {text}) {
         // Our bot has something to say!
         // Let's retrieve the Facebook user whose session belongs to
@@ -149,7 +156,7 @@ app.use(({method, url}, rsp, next) => {
     });
     next();
 });
-app.use(bodyParser.json({ verify: verifyRequestSignature }));
+app.use(bodyParser.json({verify: verifyRequestSignature}));
 
 // Webhook setup
 app.get('/webhook', (req, res) => {
