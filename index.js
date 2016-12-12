@@ -109,24 +109,11 @@ const findOrCreateSession = (fbid) => {
 
 // Our bot actions
 const actions = {
-    getMeals(){
-        return fetch('http://wwww.homeats.fr/api/cravings', {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-        })
-            .then(rsp => rsp.json())
-            .then(json => {
-                return json;
-            });
-    },
     fetchMeal({text, sessionId}){
         const recipientId = sessions[sessionId].fbid;
 
         if (recipientId) {
-            this.getMeals()
-                .then(function(meals){
-                    return fbMessage(recipientId, `Le plat ${text} est disponible ! Nombre de plats disponibles : ${meals.length}`);
-                });
+            return fbMessage(recipientId, `Le plat ${text} est disponible !`);
         }
     },
     send({sessionId}, {text}) {
