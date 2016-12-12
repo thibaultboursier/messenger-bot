@@ -109,7 +109,7 @@ const findOrCreateSession = (fbid) => {
 
 // Our bot actions
 const actions = {
-    fetchMeal({text}){
+    fetchMeal({text, sessionId}){
         const recipientId = sessions[sessionId].fbid;
 
         if (recipientId) {
