@@ -110,8 +110,8 @@ const actions = {
     callPerson(){
         console.log('Calling callPerson method');
     },
-    fetchMeal({sessionId}, {text}){
-        console.log('Looking in database for meal \'%d\'', text);
+    fetchMeal(context){
+        console.log('Looking in database for meal \'%d\'', context, arguments);
     },
     send({sessionId}, {text}) {
         // Our bot has something to say!
