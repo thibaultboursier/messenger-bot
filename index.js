@@ -19,8 +19,10 @@ const express = require('express');
 const fetch = require('node-fetch');
 const request = require('request');
 
+
 let Wit = null;
 let log = null;
+let meal = require('./meal');
 
 try {
     // if running from repo
@@ -107,12 +109,7 @@ const findOrCreateSession = (fbid) => {
 
 // Our bot actions
 const actions = {
-    callPerson(){
-        console.log('Calling callPerson method');
-    },
-    fetchMeal(context){
-        console.log('Looking in database for meal \'%d\'', context, arguments);
-    },
+    fetchMeal: meal.fetchOne,
     send({sessionId}, {text}) {
         // Our bot has something to say!
         // Let's retrieve the Facebook user whose session belongs to
