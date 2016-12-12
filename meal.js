@@ -2,8 +2,12 @@
  * Created by Thibault on 13/12/2016.
  */
 
-function fetchOne(context, entities) {
-    console.log('Looking in database for meal ', context);
+/**
+ * Fetch single meal from database.
+ * @param data
+ */
+function fetchOne(data) {
+    console.log('Looking in database for meal ', data.text);
 }
 
 module.exports = {
